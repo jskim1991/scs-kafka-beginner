@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        input-channel: # 채널 이름
+          destination: nerdy-bros # 토픽 이름
+        output-channel: # 채널 이름
+          destination: nerdy-bros # 토픽 이름
+      kafka:
+        binder:
+          brokers:
+          - localhost:9092          
