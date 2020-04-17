@@ -5,6 +5,7 @@ import java.util.Properties;
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.springframework.stereotype.Component;
@@ -15,9 +16,9 @@ public class NerdyProducer {
 
 	public static Properties init() {
 		Properties props = new Properties();
-		props.put("bootstrap.servers", "localhost:9092");
-		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+		props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+		props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
+		props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
 		return props;
 	}
 
@@ -53,27 +54,24 @@ public class NerdyProducer {
 		try (Producer<String, String> producer = new KafkaProducer<>(NerdyProducer.init())) {
 			// channelName & message
 			ProducerRecord<String, String> record = new ProducerRecord<>("nerdy-bros", "### producer send message : " + message);
-			producer.send(record, new ProducerCallback());
+			producer.send(record, new Callback() {
+				@Override
+				public void onCompletion(RecordMetadata metadata, Exception exception) {
+					if (!ObjectUtils.isEmpty(metadata)) {
+						// topic-partition@offset
+						System.out.println(metadata);
+					} else {
+						exception.printStackTrace();
+						throw new RuntimeException(exception);
+					}
+				}
+			});
 		} catch (Exception e) {
 			System.out.println("### sendMessage Exception message : " + e.getMessage());
 			e.printStackTrace();
 		}
 
 		long end = System.currentTimeMillis();
-		System.out.println("### sync message send - during time : " + (end - start));
+		System.out.println("### async message send - during time : " + (end - start));
 	}
-
-	class ProducerCallback implements Callback {
-		@Override
-		public void onCompletion(RecordMetadata metadata, Exception exception) {
-			if (!ObjectUtils.isEmpty(metadata)) {
-				// topic-partition@offset
-				System.out.println(metadata);
-			} else {
-				exception.printStackTrace();
-				throw new RuntimeException(exception);
-			}
-		}
-	}
-
 }
