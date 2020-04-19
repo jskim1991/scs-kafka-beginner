@@ -1,11 +1,13 @@
 package com.nerdybros.app.producer;
 
+import java.util.Map;
 import java.util.Properties;
 
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerInterceptor;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.springframework.stereotype.Component;
@@ -73,5 +75,35 @@ public class NerdyProducer {
 
 		long end = System.currentTimeMillis();
 		System.out.println("### async message send - during time : " + (end - start));
+	}
+
+	public static class CallBackInterceptor implements ProducerInterceptor<byte[], byte[]> {
+
+		@Override
+		public void configure(Map<String, ?> configs) {
+			System.out.println("### congfiguration");
+		}
+
+		@Override
+		public ProducerRecord<byte[], byte[]> onSend(ProducerRecord<byte[], byte[]> record) {
+			System.out.println("### onSend " + record);
+			return record;
+		}
+
+		@Override
+		public void onAcknowledgement(RecordMetadata metadata, Exception exception) {
+			if (metadata != null) {
+				System.out.println("### metadata : " + metadata);
+			}
+			if (exception != null) {
+				System.out.println("### exception : " + exception);
+			}
+		}
+
+		@Override
+		public void close() {
+			System.out.println("### close");
+		}
+
 	}
 }

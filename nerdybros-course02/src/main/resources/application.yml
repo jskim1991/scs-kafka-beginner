@@ -4,7 +4,15 @@ spring:
       bindings:
         input-channel: # 채널 이름
           destination: nerdy-bros # 토픽 이름
-      kafka:
+        output-channel: # 채널 이름
+          destination: nerdy-bros # 토픽 이름
+          producer:      kafka:
         binder:
           brokers:
           - localhost:9092
+        bindings:
+          output-channel:
+            producer:
+              configuration:
+                max.block.ms: 5000
+                interceptor.classes: com.example.Scstgh795Application$MyInterceptor
