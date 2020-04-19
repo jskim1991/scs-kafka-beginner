@@ -2,6 +2,7 @@ package io.nerdybros.course.channel;
 
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.annotation.Output;
+import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.SubscribableChannel;
 
 public interface BindingChannels {
@@ -12,7 +13,7 @@ public interface BindingChannels {
 	String INPUT_CHANNEL_OTHER = "input-channel-other";
 
 	@Output(OUTPUT_CHANNEL)
-	SubscribableChannel outputChannel();
+	MessageChannel outputChannel();
 
 	@Input(INPUT_CHANNEL01)
 	SubscribableChannel inputChannel01();

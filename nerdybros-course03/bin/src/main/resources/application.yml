@@ -26,7 +26,6 @@ spring:
             use-native-decoding: true # 사용자 지정 Decoding 방식을 지정할 수 있는 설정
       kafka:
         binder:
-          auto-add-partitions: true
           producerProperties:
             key.serializer: org.apache.kafka.common.serialization.StringSerializer # key serialize 방식을 지정
             value.serializer: org.apache.kafka.common.serialization.StringSerializer # value serialize 방식을 지정
