@@ -21,7 +21,8 @@ public class Consumer {
 		System.out.println("### recieve message01, partition: " + partition + ", topic: " + topic + ", groupId: "+ groupId + ", payload: " + payload);
 	}
 
-	@StreamListener(target = BindingChannels.INPUT_CHANNEL02, condition = "payload.filterKey == 'channel02'")
+	// SpEL expression using, payload.{value}.toString()
+	@StreamListener(target = BindingChannels.INPUT_CHANNEL02, condition = "payload.filterKey.toString() == 'channel02'")
 	public void receiveMessage02(
 			@Header(KafkaHeaders.RECEIVED_PARTITION_ID) String partition,
 			@Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
