@@ -4,6 +4,9 @@ spring:
   cloud:
     stream:
       bindings:
+        output-channel:
+          destination: nerdy-bros # 토픽 이름
+          producer:            use-native-encoding: true
         input-channel01: # 채널 이름
           destination: nerdy-bros # 토픽 이름
           group: consumerGroup01

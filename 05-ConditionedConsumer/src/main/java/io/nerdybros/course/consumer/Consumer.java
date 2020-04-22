@@ -18,7 +18,15 @@ public class Consumer {
 			@Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
 			@Header(KafkaHeaders.GROUP_ID) String groupId,
 			@Payload String payload)  {
-
+		System.out.println("### recieve message01, partition: " + partition + ", topic: " + topic + ", groupId: "+ groupId + ", payload: " + payload);
 	}
 
+	@StreamListener(target = BindingChannels.INPUT_CHANNEL02, condition = "payload.filterKey == 'channel02'")
+	public void receiveMessage02(
+			@Header(KafkaHeaders.RECEIVED_PARTITION_ID) String partition,
+			@Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
+			@Header(KafkaHeaders.GROUP_ID) String groupId,
+			@Payload String payload) {
+		System.out.println("### recieve message02, partition: " + partition + ", topic: " + topic + ", groupId: "+ groupId + ", payload: " + payload);
+	}
 }
