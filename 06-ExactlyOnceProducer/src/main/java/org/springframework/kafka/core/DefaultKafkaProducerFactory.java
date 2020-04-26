@@ -647,7 +647,7 @@ public class DefaultKafkaProducerFactory<K, V> implements ProducerFactory<K, V>,
 				if (new Random().nextInt() % 2 == 0) {
 					this.delegate.commitTransaction();
 				} else {
-					throw new RuntimeException("intentional exception");
+					throw new RuntimeException("intentional exception in commitTransaction of DefaultKafkaProducerFactory for transaction test");
 				}
 			} catch (RuntimeException e) {
 				LOGGER.error(e, () -> "commitTransaction failed: " + this);
