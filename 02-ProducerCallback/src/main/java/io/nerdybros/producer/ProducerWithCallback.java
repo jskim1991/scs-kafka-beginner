@@ -54,6 +54,5 @@ public class ProducerWithCallback {
 		public void close() {
 			System.out.println("### close");
 		}
-
 	}
 }

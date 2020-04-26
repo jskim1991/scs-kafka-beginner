@@ -14,4 +14,4 @@ spring:
           output-async-channel:
             producer:
               configuration: 
-                interceptor.classes: com.nerdybros.app.producer.NerdyProducer$CallBackInterceptor
+                interceptor.classes: io.nerdybros.producer.ProducerWithCallback$CallBackInterceptor

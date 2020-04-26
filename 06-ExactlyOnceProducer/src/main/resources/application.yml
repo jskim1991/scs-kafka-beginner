@@ -1,0 +1,30 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true # 이미 등록된 bean을 override 하는 경우 발생하는 exception 해결
+  cloud:
+    stream:
+      bindings:
+        output-channel:
+          destination: nerdy-bros # 토픽 이름
+          producer:
+            use-native-encoding: true
+        exactly-once-output-channel:
+          destination: nerdy-bros # 토픽 이름
+          producer:
+            use-native-encoding: true
+      kafka:
+        bindings:
+          exactly-once-output-channel:
+            producer:
+              # idempotent producer 설정
+              configuration:
+                acks: all
+                retries: 100
+                transactional.id: nerdyBros.
+        binder:
+          auto-add-partitions: true
+          producerProperties:
+            key.serializer: org.apache.kafka.common.serialization.StringSerializer # key serialize 방식을 지정
+            value.serializer: org.apache.kafka.common.serialization.StringSerializer # value serialize 방식을 지정
+          brokers:
+          - localhost:9092
