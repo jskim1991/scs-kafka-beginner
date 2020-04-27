@@ -5,11 +5,11 @@ spring:
     stream:
       bindings:
         output-channel:
-          destination: nerdy-bros-replica # 토픽 이름
+          destination: nerdy-bros # 토픽 이름
           producer:
             use-native-encoding: true
         idemptent-output-channel:
-          destination: nerdy-bros-replica # 토픽 이름
+          destination: nerdy-bros # 토픽 이름
           producer:
             use-native-encoding: true
       kafka:
@@ -19,10 +19,9 @@ spring:
               # idempotent producer 설정
               configuration:
                 acks: all
-                retries: 100
+                retries: 1000
                 transactional.id: nerdyBros.
         binder:
-          replication-factor: 2
           auto-create-topics: true
           auto-add-partitions: true
           producerProperties:
@@ -30,4 +29,3 @@ spring:
             value.serializer: org.apache.kafka.common.serialization.StringSerializer # value serialize 방식을 지정
           brokers:
           - localhost:9092
-          - localhost:9093
