@@ -16,7 +16,7 @@ public class Producer {
 		channelBindings.sendMessage().send(MessageBuilder.withPayload(payload).build());
 	}
 
-	public void sendMessageIdempotent(String payload) {
-		channelBindings.sendMessageIdempotent().send(MessageBuilder.withPayload(payload).build());
+	public void sendMessageTransactional(String payload) {
+		channelBindings.sendMessageTransactional().send(MessageBuilder.withPayload(payload).build());
 	}
 }

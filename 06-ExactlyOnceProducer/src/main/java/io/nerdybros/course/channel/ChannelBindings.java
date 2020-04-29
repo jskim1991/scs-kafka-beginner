@@ -9,7 +9,7 @@ public interface ChannelBindings {
 
 	String INPUT = "input-channel";
 	String OUTPUT = "output-channel";
-	String IDEMPOTENT_OUPTUT = "idemptent-output-channel";
+	String TRANSACTIONAL_OUPTUT = "transactional-output-channel";
 
 	@Input(INPUT)
 	SubscribableChannel receiveEvent();
@@ -17,6 +17,6 @@ public interface ChannelBindings {
 	@Output(OUTPUT)
 	MessageChannel sendMessage();
 
-	@Output(IDEMPOTENT_OUPTUT)
-	MessageChannel sendMessageIdempotent();
+	@Output(TRANSACTIONAL_OUPTUT)
+	MessageChannel sendMessageTransactional();
 }

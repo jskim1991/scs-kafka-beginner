@@ -25,8 +25,8 @@ public class Application {
 		produer.sendMessage(message);
 	}
 
-	@PostMapping("/send-idempotent")
-	public void sendMessageIdempotent(@RequestBody String message) {
-		produer.sendMessageIdempotent(message);
+	@PostMapping("/send-transactional")
+	public void sendMessageTransactional(@RequestBody String message) {
+		produer.sendMessageTransactional(message);
 	}
 }
