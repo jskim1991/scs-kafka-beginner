@@ -4,6 +4,10 @@ spring:
   cloud:
     stream:
       bindings:
+        input-channel:
+          destination: nerdy-bros # 토픽 이름
+          consumer:
+            use-native-decoding: true
         output-channel:
           destination: nerdy-bros # 토픽 이름
           producer:
@@ -12,9 +16,6 @@ spring:
           destination: nerdy-bros # 토픽 이름
           producer:
             use-native-encoding: true
-        input-channel:
-          destination: nerdy-bros # 토픽 이름
-          consumer:            use-native-decoding: true
       kafka:
         bindings:
           transactional-output-channel:
@@ -24,12 +25,6 @@ spring:
                 acks: all
                 retries: 1000
                 transactional.id: nerdyBros.
-                enable:
-                  # When set to 'true', the producer will ensure that exactly one copy of each message is written in the stream. 
-                  # If 'false', producer retries due to broker failures, etc., may write duplicates of the retried message in the stream.
-                  # Note that enabling idempotence requires max.in.flight.requests.per.connection to be less than or equal to 5
-                  # retries to be greater than 0 and acks must be 'all'.
-                  idempotence: true
           input-channel:
             consumer:              configuration:
                 isolation:

@@ -12,7 +12,7 @@
 	</parent>
 
 	<groupId>com.nerdybros.course</groupId>
-	<artifactId>nerdybros-course01</artifactId>
+	<artifactId>course01</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>nerdybros-course01</name>
 

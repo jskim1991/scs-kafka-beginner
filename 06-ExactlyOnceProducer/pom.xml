@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.nerdybros.course</groupId>
-	<artifactId>course05</artifactId>
+	<artifactId>course06</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>06-ExactlyOnceProducer</name>
 	<description>06-ExactlyOnceProducer</description>
