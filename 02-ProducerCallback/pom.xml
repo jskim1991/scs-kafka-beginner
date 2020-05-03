@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>com.nerdybros.course</groupId>
+	<groupId>io.nerdybros.course</groupId>
 	<artifactId>course02</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>nerdybros-course02</name>

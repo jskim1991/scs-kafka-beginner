@@ -15,8 +15,4 @@ public class Producer {
 	public void sendMessage(String payload) {
 		bindingChannels.sendMessage().send(MessageBuilder.withPayload(payload).build());
 	}
-
-	public void sendMessageTransactional(String payload) {
-		bindingChannels.sendMessageIdempotence().send(MessageBuilder.withPayload(payload).build());
-	}
 }
