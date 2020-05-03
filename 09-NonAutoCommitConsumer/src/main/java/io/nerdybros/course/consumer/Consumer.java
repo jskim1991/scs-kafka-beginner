@@ -16,6 +16,8 @@ public class Consumer {
 	public void receiveEventAutoCommit(@Header(KafkaHeaders.RECEIVED_PARTITION_ID) String partition,
 			@Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
 			@Header(KafkaHeaders.GROUP_ID) String groupId,
+			// when autoCommitOffset: true, below the code makes exception because there is no acknowledgment in header
+			// @Header(KafkaHeaders.ACKNOWLEDGMENT) Acknowledgment acknowledgment,
 			@Payload String payload) {
 		// you can see offset info of partition by using this cli: kafka-consumer-groups.bat --bootstrap-server localhost:9092 --group autoCommitGroup --describe
 		System.out.println("### recieve message auto commit, partition: " + partition + ", topic: " + topic + ", groupId: " + groupId + ", payload: " + payload);
@@ -30,6 +32,6 @@ public class Consumer {
 		// you can see offset info of partition by using this cli: kafka-consumer-groups.bat --bootstrap-server localhost:9092 --group nonAutoCommitGroup --describe
 		System.out.println("### recieve message none auto commit, partition: " + partition + ", topic: " + topic + ", groupId: " + groupId + ", payload: " + payload + ", acknowledgment: " + acknowledgment);
 		// remove comment(//) from under code, you can commit manually
-		acknowledgment.acknowledge();
+		// acknowledgment.acknowledge();
 	}
 }
