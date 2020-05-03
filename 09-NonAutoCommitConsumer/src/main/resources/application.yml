@@ -21,6 +21,8 @@ spring:
       kafka:
         bindings:
           # https://github.com/spring-cloud/spring-cloud-stream-binder-kafka/issues/124, autoCommitOffset is different from enable.auto.commit
+          # enable.auto.commit - the client(consumer) itself commits offset on a schedule, it relies on auto.commit.interval.ms.
+          # autoCommitOffset - decide whether to commit or not by a container(consumer) when the container recieves a record from the broker
           auto-commit-input-channel:
             consumer:
               autoCommitOffset: true
