@@ -1,4 +1,4 @@
-package com.nerdybros.app;
+package io.nerdybros.course;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

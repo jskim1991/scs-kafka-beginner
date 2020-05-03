@@ -5,20 +5,20 @@ spring:
     stream:
       bindings:
         input-channel:
-          destination: nerdy-bros # 토픽 이름
+          destination: nerdy-bros-idempotence # 토픽 이름
           consumer:
             use-native-decoding: true
         output-channel:
-          destination: nerdy-bros # 토픽 이름
+          destination: nerdy-bros-idempotence # 토픽 이름
           producer:
             use-native-encoding: true
-        transactional-output-channel:
-          destination: nerdy-bros # 토픽 이름
+        idempotence-output-channel:
+          destination: nerdy-bros-idempotence # 토픽 이름
           producer:
             use-native-encoding: true
       kafka:
         bindings:
-          transactional-output-channel:
+          idempotence-output-channel:
             producer:
               # idempotent producer 설정
               configuration:
@@ -43,5 +43,7 @@ spring:
           producerProperties:
             key.serializer: org.apache.kafka.common.serialization.StringSerializer # key serialize 방식을 지정
             value.serializer: org.apache.kafka.common.serialization.StringSerializer # value serialize 방식을 지정
+          consumerProperties:            key.deserializer: org.apache.kafka.common.serialization.StringDeserializer # key deserialize 방식을 지정
+            value.deserializer: org.apache.kafka.common.serialization.StringDeserializer # value deserialize 방식을 지정
           brokers:
           - localhost:9092

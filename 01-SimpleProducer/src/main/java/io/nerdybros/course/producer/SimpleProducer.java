@@ -1,4 +1,4 @@
-package io.nerdybros.app.producer;
+package io.nerdybros.course.producer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;

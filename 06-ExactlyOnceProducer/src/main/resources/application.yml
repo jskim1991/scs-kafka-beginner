@@ -35,5 +35,8 @@ spring:
           producerProperties:
             key.serializer: org.apache.kafka.common.serialization.StringSerializer # key serialize 방식을 지정
             value.serializer: org.apache.kafka.common.serialization.StringSerializer # value serialize 방식을 지정
+          consumerProperties:
+            key.deserializer: org.apache.kafka.common.serialization.StringDeserializer # key deserialize 방식을 지정
+            value.deserializer: org.apache.kafka.common.serialization.StringDeserializer # value deserialize 방식을 지정
           brokers:
           - localhost:9092

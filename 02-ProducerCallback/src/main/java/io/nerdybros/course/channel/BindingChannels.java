@@ -1,4 +1,4 @@
-package io.nerdybros.channel;
+package io.nerdybros.course.channel;
 
 import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.messaging.MessageChannel;

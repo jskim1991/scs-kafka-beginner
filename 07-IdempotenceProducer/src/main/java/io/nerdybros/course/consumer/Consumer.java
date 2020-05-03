@@ -6,17 +6,17 @@ import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 
-import io.nerdybros.course.channel.ChannelBindings;
+import io.nerdybros.course.channel.BindingChannels;
 
-@EnableBinding(value = {ChannelBindings.class})
+@EnableBinding(value = {BindingChannels.class})
 public class Consumer {
 
-	@StreamListener(target = ChannelBindings.INPUT)
+	@StreamListener(target = BindingChannels.INPUT)
 	public void filteredConditionedKafkaHedaer(
 			@Header(KafkaHeaders.RECEIVED_PARTITION_ID) String partition,
 			@Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
 			@Header(KafkaHeaders.GROUP_ID) String groupId,
 			@Payload String payload)  {
-		System.out.println("### recieve message01, partition: " + partition + ", topic: " + topic + ", groupId: "+ groupId + ", payload: " + payload);
+		System.out.println("### recieve message, partition: " + partition + ", topic: " + topic + ", groupId: "+ groupId + ", payload: " + payload);
 	}
 }

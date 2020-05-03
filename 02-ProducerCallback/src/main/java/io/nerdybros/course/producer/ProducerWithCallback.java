@@ -1,4 +1,4 @@
-package io.nerdybros.producer;
+package io.nerdybros.course.producer;
 
 import java.util.Map;
 
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.integration.support.MessageBuilder;
 
-import io.nerdybros.channel.BindingChannels;
+import io.nerdybros.course.channel.BindingChannels;
 
 @EnableBinding(value = {BindingChannels.class})
 public class ProducerWithCallback {

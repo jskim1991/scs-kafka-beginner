@@ -10,13 +10,13 @@ import io.nerdybros.course.channel.BindingChannels;
 public class Producer {
 
 	@Autowired
-	private BindingChannels channelBindings;
+	private BindingChannels bindingChannels;
 
 	public void sendMessage(String payload) {
-		channelBindings.sendMessage().send(MessageBuilder.withPayload(payload).build());
+		bindingChannels.sendMessage().send(MessageBuilder.withPayload(payload).build());
 	}
 
 	public void sendMessageTransactional(String payload) {
-		channelBindings.sendMessageTransactional().send(MessageBuilder.withPayload(payload).build());
+		bindingChannels.sendMessageIdempotence().send(MessageBuilder.withPayload(payload).build());
 	}
 }
